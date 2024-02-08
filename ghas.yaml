@@ -1,0 +1,32 @@
+---
+# Profile showing off feature settings for GitHub Advanced Security
+version: v1
+type: profile
+name: ghas-profile
+context:
+  provider: github
+alert: "on"
+remediate: "on"
+repository:
+  - type: secret_scanning
+    def:
+      enabled: true
+  - type: secret_push_protection
+    def:
+      enabled: true
+  - type: codeql_enabled
+    def:
+      languages: [go, python]
+      schedule_interval: '30 4-6 * * *'
+  - type: dependabot_configured
+    name: dependabot_go
+    def: 
+      package_ecosystem: gomod
+      schedule_interval: daily
+      apply_if_file: go.mod
+  - type: dependabot_configured
+    name: dependabot_python
+    def: 
+      package_ecosystem: pip
+      schedule_interval: daily
+      apply_if_file: requirements.txt

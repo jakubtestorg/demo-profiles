@@ -1,0 +1,15 @@
+---
+# sample policy for validating artifact signatures
+version: v1
+type: profile
+name: latest-artifact-simple
+context:
+  provider: github
+artifact:
+  - type: artifact_signature
+    params:
+      tags: [latest]
+      name: good-repo-go
+    def:
+      is_signed: true
+      is_verified: true

@@ -1,0 +1,14 @@
+---
+# sample profile for validating repositories
+version: v1
+type: profile
+name: actions
+context:
+  provider: github
+alert: "on"
+remediate: "on"
+repository:
+  - type: actions_check_pinned_tags
+    def:
+      exclude:
+        - github-early-access/generate-build-provenance@main
